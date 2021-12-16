@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'debug_toolbar',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = BASE_DIR / 'media/'
 MEDIA_URL = 'media/'
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
