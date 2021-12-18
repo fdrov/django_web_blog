@@ -1,0 +1,19 @@
+{% load menu %}
+{% load cache %}
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="logo">
+                    <h2><a href="{% url 'home' %}">Classic</a></h2>
+                </div>
+            </div>
+            <div class="col-md-10">
+                {% cache 500 show_menu %}
+                    {% show_menu %}
+                {% endcache %}
+            </div>
+        </div>
+    </div>
+</header>
+

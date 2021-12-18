@@ -138,3 +138,11 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 MEDIA_URL = 'media/'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': BASE_DIR / 'cache',
+    }
+}
