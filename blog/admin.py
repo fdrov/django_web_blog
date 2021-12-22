@@ -26,7 +26,7 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'slug', 'category', 'created_at', 'get_photo']
+    list_display = ['id', 'title', 'slug', 'category', 'created_at', 'get_photo', 'views']
     prepopulated_fields = {'slug': ('title',)}
     form = PostAdminForm
     save_as = True
