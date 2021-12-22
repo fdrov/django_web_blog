@@ -1,7 +1,7 @@
 from django.db.models import F
 from django.views.generic import ListView, DetailView
 
-from .models import Post, Category
+from .models import Post, Category, Tag
 
 
 class HomeListView(ListView):
@@ -22,7 +22,7 @@ class HomeListView(ListView):
 
 class PostsByCategory(ListView):
     template_name = 'blog/posts_by_category.html'
-    context_object_name = 'posts_by_category'
+    context_object_name = 'posts'
     paginate_by = 4
     allow_empty = False
 
@@ -32,6 +32,23 @@ class PostsByCategory(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = Category.objects.get(slug=self.kwargs['slug'])
+        return context
+
+
+class PostsByTag(ListView):
+    model = Post
+    context_object_name = 'posts'
+    allow_empty = False
+    template_name = 'blog/posts_by_category.html'
+    paginate_by = 4
+
+    def get_queryset(self):
+        return Post.objects.filter(tags__slug=self.kwargs['slug'])
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Записи по тегу: ' + Tag.objects.get(slug=self.kwargs['slug']).title
+        print(type(Tag.objects.get(slug=self.kwargs['slug'])))
         return context
 
 
@@ -46,9 +63,3 @@ class PostDetailView(DetailView):
         self.object.save()
         self.object.refresh_from_db()
         return context
-
-
-class PostsByTag(ListView):
-    model = Post
-    template_name = 'blog/post.html'
-    pass

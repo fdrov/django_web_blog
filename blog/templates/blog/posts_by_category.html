@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="blog-post-area-style">
 
-                    {% for post in posts_by_category %}
+                    {% for post in posts %}
                             {#                    {% for post in posts %}#}
                             <div class="col-md-3">
                                 <div class="single-post">
@@ -58,7 +58,7 @@
                         <a class="page-numbers" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
                     {% endif %}
 
-                    {% for p in page_range %}
+                    {% for p in page_range|default_if_none:paginator.page_range %}
                         {% if p == page_obj.number %}
                             <a class="page-numbers current" href="?page={{ p }}">{{ p }}</a>
                         {% elif p == paginator.ELLIPSIS %}
