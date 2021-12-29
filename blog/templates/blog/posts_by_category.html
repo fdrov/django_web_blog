@@ -38,7 +38,7 @@
                                              alt="{{ post.title }}">
                                     {% endif %}
                                     <h3>
-                                        <a href="{{ post.get_absolute_url }}">{{ forloop.counter0|add:page_obj.start_index }} {{ post.title }}</a>
+                                        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                                     </h3>
                                     <h4><span>Posted By: <span class="author-name">{{ post.author }}</span></span>
                                     </h4>
